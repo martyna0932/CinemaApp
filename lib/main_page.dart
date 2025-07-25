@@ -1,9 +1,8 @@
 import 'package:cinema_app/purchasepage.dart';
 import 'package:flutter/material.dart';
-import 'loginpage.dart';
-import 'registerpage.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'widget/footerpage.dart';
+import 'widget/footer.dart';
+import 'widget/appbar.dart';
 
 void main() {
   runApp(const CinemaCityClone());
@@ -109,7 +108,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: const AppBarPage(),
+      
+      /*AppBar(
         backgroundColor: const Color.fromARGB(255, 12, 12, 12),
         title: Row(
           children: [
@@ -166,6 +167,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      */
       body: SingleChildScrollView(
         child: Column(
           children: [
