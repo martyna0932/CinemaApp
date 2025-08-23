@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 12),
                             ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
@@ -124,12 +124,12 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(fontSize: 18, color: Colors.white),
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 14),
                             TextButton(
                               onPressed: () {},
                               child: const Text(
                                 'Nie pamiętasz hasła?',
-                                style: TextStyle(color: Colors.orangeAccent, fontSize: 14),
+                                style: TextStyle(color: Colors.orangeAccent, fontSize: 12),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                               onPressed: () {},
                               child: const Text(
                                 'Zarejestruj się',
-                                style: TextStyle(color: Colors.orangeAccent),
+                                style: TextStyle(color: Colors.orangeAccent, fontSize: 12),
                               ),
                             ),
                           ],
