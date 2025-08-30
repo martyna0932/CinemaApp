@@ -1,7 +1,9 @@
+import 'package:cinema_app/test.dart';
 import 'package:flutter/material.dart';
 import '../main_page.dart';
 import '../loginpage.dart';
 import '../registerpage.dart';
+import '../accountpage.dart';
 
 class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
   const AppBarPage({super.key});
@@ -35,8 +37,10 @@ class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextButton(
-                onPressed: () {},
-                child: const Text('Język', style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Test()));
+                },
+                child: const Text('Test', style: TextStyle(color: Colors.white)),
               ),
               TextButton(
                 onPressed: () {

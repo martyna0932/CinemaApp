@@ -42,7 +42,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCdoFR1ZfYOUUXu_O7v9aPswzjFFBut2r4',
-    appId: '1:105065293447:web:77e32146a0e708aa887a22',
+    appId: '1:105065293447:web:fcc3e3503cc7c3db887a22',
     messagingSenderId: '105065293447',
     projectId: 'cinema-55ec6',
     authDomain: 'cinema-55ec6.firebaseapp.com',
@@ -53,7 +53,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCzPcAbEFjN7PWmznZS6Q1mO42kaeyMkpc',
-    appId: '1:105065293447:android:0cc48660399a06e8887a22',
+    appId: '1:105065293447:web:77e32146a0e708aa887a22',
     messagingSenderId: '105065293447',
     projectId: 'cinema-55ec6',
     databaseURL: 'https://cinema-55ec6-default-rtdb.europe-west1.firebasedatabase.app',

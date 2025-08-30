@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'main_page.dart';
+import 'accountpage.dart'; // dodajemy import
 import 'widget/footer.dart';
 import 'widget/appbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
-  
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -18,6 +16,10 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   bool rememberMe = false;
 
+  
+  final String demoEmail = "test@kino.pl";
+  final String demoPassword = "123456";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             const SizedBox(height: 32),
-              
-            // 📌 FORMULARZ
+
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Center(
@@ -62,7 +64,9 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               validator: (value) {
-                                if (value == null || value.isEmpty) return 'Wprowadź adres e-mail';
+                                if (value == null || value.isEmpty) {
+                                  return 'Wprowadź adres e-mail';
+                                }
                                 return null;
                               },
                             ),
@@ -82,7 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               validator: (value) {
-                                if (value == null || value.isEmpty) return 'Wprowadź hasło';
+                                if (value == null || value.isEmpty) {
+                                  return 'Wprowadź hasło';
+                                }
                                 return null;
                               },
                             ),
@@ -108,16 +114,31 @@ class _LoginPageState extends State<LoginPage> {
                             ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const CinemaCityClone()),
-                                  );
+                                  
+                                  if (emailController.text == demoEmail &&
+                                      passwordController.text == demoPassword) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AccountPage(email: demoEmail),
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text("Nieprawidłowy e-mail lub hasło"),
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    );
+                                  }
                                 }
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(255, 237, 119, 1),
                                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
                               child: const Text(
                                 'Zaloguj się',
@@ -162,9 +183,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  
-
-  
-
 }
