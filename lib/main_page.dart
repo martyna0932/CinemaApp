@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'widget/footer.dart';
 import 'widget/appbar.dart';
+import 'data/appdata.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // 🔹 potrzebne przy async
+  await AppData.loadPassword();
   runApp(const CinemaCityClone());
 }
 

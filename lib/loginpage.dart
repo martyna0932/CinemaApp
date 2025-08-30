@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'accountpage.dart'; // dodajemy import
-import 'widget/footer.dart';
 import 'widget/appbar.dart';
+import 'package:flutter/material.dart';
+import 'accountpage.dart';
+import 'package:cinema_app/data/appdata.dart';
+import 'widget/footer.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,10 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   bool rememberMe = false;
 
-  
-  final String demoEmail = "test@kino.pl";
-  final String demoPassword = "123456";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +26,6 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             const SizedBox(height: 32),
-
-            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Center(
@@ -114,13 +110,12 @@ class _LoginPageState extends State<LoginPage> {
                             ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  
-                                  if (emailController.text == demoEmail &&
-                                      passwordController.text == demoPassword) {
+                                  if (emailController.text == AppData.email &&
+                                      passwordController.text == AppData.password) {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => AccountPage(email: demoEmail),
+                                        builder: (context) => AccountPage(email: AppData.email),
                                       ),
                                     );
                                   } else {
@@ -145,26 +140,6 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(fontSize: 18, color: Colors.white),
                               ),
                             ),
-                            const SizedBox(height: 14),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Nie pamiętasz hasła?',
-                                style: TextStyle(color: Colors.orangeAccent, fontSize: 12),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "Nie masz jeszcze konta?",
-                              style: TextStyle(color: Colors.white70, fontSize: 12),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Zarejestruj się',
-                                style: TextStyle(color: Colors.orangeAccent, fontSize: 12),
-                              ),
-                            ),
                           ],
                         ),
                       ),
@@ -173,10 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-
             const SizedBox(height: 48),
-
-            // footer
             const FooterPage(),
           ],
         ),

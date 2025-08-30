@@ -5,8 +5,8 @@ import '../loginpage.dart';
 import '../registerpage.dart';
 
 
-class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarPage({super.key});
+class AppBarPage_account extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarPage_account({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight + 48);
@@ -40,19 +40,13 @@ class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const Test()));
                 },
-                child: const Text('Test', style: TextStyle(color: Colors.white)),
+                child: const Text('Konto', style: TextStyle(color: Colors.white)),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
-                child: const Text('Logowanie', style: TextStyle(color: Colors.white)),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
-                },
-                child: const Text('Rejestracja', style: TextStyle(color: Colors.white)),
+                child: const Text('Wyloguj', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
