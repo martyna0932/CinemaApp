@@ -1,25 +1,23 @@
-import 'package:cinema_app/data/appdata.dart';
-import 'package:cinema_app/passwordchange.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:cinema_app/data/appdata.dart';
 import 'widget/account_appbar.dart';
 import 'widget/footer.dart';
 
-class AccountPage extends StatefulWidget {
+class PasswordPage extends StatefulWidget {
   final String email;
 
-  const AccountPage({super.key, required this.email});
+  const PasswordPage({super.key, required this.email});
 
   @override
-  State<AccountPage> createState() => _AccountPageState();
+  State<PasswordPage> createState() => _PasswordPageState();
 }
 
-class _AccountPageState extends State<AccountPage> {
+class _PasswordPageState extends State<PasswordPage> {
+  final TextEditingController _passwordController = TextEditingController();
   final Map<String, String> _couponCodes = {};
 
   String _generateCouponCode() {
-    final random = Random();
-    return (100000 + random.nextInt(900000)).toString();
+    return (100000 + (DateTime.now().millisecondsSinceEpoch % 900000)).toString();
   }
 
   @override
@@ -48,7 +46,7 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                   const SizedBox(height: 4),
                   const Text(
-                    "Twoje konto klienta",
+                    "Zarządzaj swoim kontem",
                     style: TextStyle(color: Colors.orange, fontSize: 14),
                   ),
                 ],
@@ -59,7 +57,7 @@ class _AccountPageState extends State<AccountPage> {
               labelColor: Colors.orange,
               unselectedLabelColor: Colors.white70,
               tabs: [
-                Tab(icon: Icon(Icons.person), text: "Dane"),
+                Tab(icon: Icon(Icons.lock), text: "Zmiana hasła"),
                 Tab(icon: Icon(Icons.history), text: "Historia"),
                 Tab(icon: Icon(Icons.local_offer), text: "Kupony"),
               ],
@@ -67,7 +65,7 @@ class _AccountPageState extends State<AccountPage> {
             Expanded(
               child: TabBarView(
                 children: [
-                  _buildUserData(),
+                  _buildPasswordChange(),
                   _buildHistory(),
                   _buildCoupons(),
                 ],
@@ -83,64 +81,85 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  // 🔹 Zakładka Dane użytkownika
-  Widget _buildUserData() {
+  // 🔹 Zakładka Zmiana hasła
+  Widget _buildPasswordChange() {
     return Container(
       color: Colors.black,
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          // Adres e-mail
-          ListTile(
-            leading: const Icon(Icons.email, color: Colors.orange),
-            title: const Text("Adres e-mail", style: TextStyle(color: Colors.white)),
-            subtitle: Text(AppData.email, style: const TextStyle(color: Colors.white70)),
-          ),
-          const SizedBox(height: 16),
-          // Hasło z przyciskiem pod spodem
-          ListTile(
-            leading: const Icon(Icons.lock, color: Colors.orange),
-            title: const Text("Hasło", style: TextStyle(color: Colors.white)),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppData.password.replaceAll(RegExp(r"."), "*"),
-                  style: const TextStyle(color: Colors.white70),
-                ),
-                const SizedBox(height: 8),
-               ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PasswordPage(email: widget.email),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-                  child: const Text(
-                    "Zmień hasło",
-                    style: TextStyle(color: Colors.white),
+      child: Center(
+        child: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Text(
+                    "Zmień hasło dla ${widget.email}",
+                    style: const TextStyle(
+                      color: Colors.orange,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: "Wpisz nowe hasło",
+                      filled: true,
+                      fillColor: const Color.fromARGB(255, 23, 23, 23),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_passwordController.text.isNotEmpty) {
+                        // Zapisujemy nowe hasło
+                        AppData.password = _passwordController.text;
 
-              ],
+                        // Czyścimy pole
+                        _passwordController.clear();
+
+                        // Komunikat o zmianie hasła
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Hasło zostało zmienione ✅"),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      minimumSize: const Size(150, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      "Zmień hasło",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
 
-  /*TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
-                },
-                child: const Text('Rejestracja', style: TextStyle(color: Colors.white)),
-              ),*/
-
-  // 🔹 Historia rezerwacji
+  // 🔹 Historia (bez zmian)
   Widget _buildHistory() {
     return Container(
       color: Colors.black,
@@ -162,7 +181,7 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  // 🔹 Kupony
+  // 🔹 Kupony (bez zmian)
   Widget _buildCoupons() {
     final coupons = [
       "🎟️ -20% na bilety w weekend",

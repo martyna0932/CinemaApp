@@ -1,8 +1,10 @@
-import 'package:cinema_app/test.dart';
+import 'package:cinema_app/accountpage.dart';
+import 'package:cinema_app/accountpage.dart';
 import 'package:flutter/material.dart';
 import '../main_page.dart';
 import '../loginpage.dart';
-import '../registerpage.dart';
+import 'package:cinema_app/data/appdata.dart';
+
 
 
 class AppBarPage_account extends StatelessWidget implements PreferredSizeWidget {
@@ -38,7 +40,7 @@ class AppBarPage_account extends StatelessWidget implements PreferredSizeWidget 
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Test()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  AccountPage(email: AppData.email)));
                 },
                 child: const Text('Konto', style: TextStyle(color: Colors.white)),
               ),
