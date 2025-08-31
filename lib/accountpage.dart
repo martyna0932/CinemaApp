@@ -1,9 +1,12 @@
-import 'package:cinema_app/data/appdata.dart';
-import 'package:cinema_app/passwordchange.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:cinema_app/data/appdata.dart';
 import 'widget/account_appbar.dart';
 import 'widget/footer.dart';
+
+// 📂 zakładki z features
+import 'features/data_tab.dart';
+import 'features/history_tab.dart';
+import 'features/coupon_tab.dart';
 
 class AccountPage extends StatefulWidget {
   final String email;
@@ -15,13 +18,6 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  final Map<String, String> _couponCodes = {};
-
-  String _generateCouponCode() {
-    final random = Random();
-    return (100000 + random.nextInt(900000)).toString();
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -48,7 +44,7 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                   const SizedBox(height: 4),
                   const Text(
-                    "Twoje konto klienta",
+                    "Twoje konto",
                     style: TextStyle(color: Colors.orange, fontSize: 14),
                   ),
                 ],
@@ -59,7 +55,7 @@ class _AccountPageState extends State<AccountPage> {
               labelColor: Colors.orange,
               unselectedLabelColor: Colors.white70,
               tabs: [
-                Tab(icon: Icon(Icons.person), text: "Dane"),
+                Tab(icon: Icon(Icons.person), text: "Dane użytkownika"),
                 Tab(icon: Icon(Icons.history), text: "Historia"),
                 Tab(icon: Icon(Icons.local_offer), text: "Kupony"),
               ],
@@ -67,9 +63,9 @@ class _AccountPageState extends State<AccountPage> {
             Expanded(
               child: TabBarView(
                 children: [
-                  _buildUserData(),
-                  _buildHistory(),
-                  _buildCoupons(),
+                  UserDataTab(email: widget.email),
+                  const HistoryTab(),   // 🔹 zakładka Historia
+                  CouponsTab(),         // 🔹 zakładka Kupony
                 ],
               ),
             ),
@@ -79,142 +75,6 @@ class _AccountPageState extends State<AccountPage> {
           height: 60,
           child: FooterPage(),
         ),
-      ),
-    );
-  }
-
-  // 🔹 Zakładka Dane użytkownika
-  Widget _buildUserData() {
-    return Container(
-      color: Colors.black,
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          // Adres e-mail
-          ListTile(
-            leading: const Icon(Icons.email, color: Colors.orange),
-            title: const Text("Adres e-mail", style: TextStyle(color: Colors.white)),
-            subtitle: Text(AppData.email, style: const TextStyle(color: Colors.white70)),
-          ),
-          const SizedBox(height: 16),
-          // Hasło z przyciskiem pod spodem
-          ListTile(
-            leading: const Icon(Icons.lock, color: Colors.orange),
-            title: const Text("Hasło", style: TextStyle(color: Colors.white)),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppData.password.replaceAll(RegExp(r"."), "*"),
-                  style: const TextStyle(color: Colors.white70),
-                ),
-                const SizedBox(height: 8),
-               ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PasswordPage(email: widget.email),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-                  child: const Text(
-                    "Zmień hasło",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /*TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
-                },
-                child: const Text('Rejestracja', style: TextStyle(color: Colors.white)),
-              ),*/
-
-  // 🔹 Historia rezerwacji
-  Widget _buildHistory() {
-    return Container(
-      color: Colors.black,
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: const [
-          ListTile(
-            leading: Icon(Icons.movie, color: Colors.orange),
-            title: Text("Avatar 2", style: TextStyle(color: Colors.white)),
-            subtitle: Text("12.01.2024 • Sala 5 • 19:30", style: TextStyle(color: Colors.white70)),
-          ),
-          ListTile(
-            leading: Icon(Icons.movie, color: Colors.orange),
-            title: Text("Batman", style: TextStyle(color: Colors.white)),
-            subtitle: Text("20.12.2023 • Sala 2 • 21:00", style: TextStyle(color: Colors.white70)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // 🔹 Kupony
-  Widget _buildCoupons() {
-    final coupons = [
-      "🎟️ -20% na bilety w weekend",
-      "🍿 Darmowy popcorn w poniedziałek",
-    ];
-
-    return Container(
-      color: Colors.black,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: coupons.length,
-        itemBuilder: (context, index) {
-          final coupon = coupons[index];
-          final code = _couponCodes[coupon];
-
-          return Card(
-            color: const Color.fromARGB(255, 48, 48, 48),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(coupon, style: const TextStyle(color: Colors.white, fontSize: 16)),
-                  const SizedBox(height: 10),
-                  if (code != null)
-                    Text(
-                      "Kod: $code",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: code == null
-                        ? () {
-                            setState(() {
-                              _couponCodes[coupon] = _generateCouponCode();
-                            });
-                          }
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: code == null ? Colors.black87 : Colors.orange,
-                    ),
-                    child: const Text("Generuj kod"),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
       ),
     );
   }
