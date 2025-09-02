@@ -118,14 +118,6 @@
       ]
     },
     {
-      "name": "youtube_player_flutter",
-      "version": "8.1.2",
-      "dependencies": [
-        "flutter",
-        "flutter_inappwebview"
-      ]
-    },
-    {
       "name": "cupertino_icons",
       "version": "1.0.8",
       "dependencies": []
@@ -472,13 +464,6 @@
       ]
     },
     {
-      "name": "flutter_inappwebview",
-      "version": "5.8.0",
-      "dependencies": [
-        "flutter"
-      ]
-    },
-    {
       "name": "sqflite_common",
       "version": "2.5.5",
       "dependencies": [
@@ -635,6 +620,21 @@
       "version": "1.4.0",
       "dependencies": [
         "collection"
+      ]
+    },
+    {
+      "name": "youtube_player_flutter",
+      "version": "8.1.2",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview",
+      "version": "5.8.0",
+      "dependencies": [
+        "flutter"
       ]
     }
   ],
