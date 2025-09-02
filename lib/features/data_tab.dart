@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cinema_app/data/appdata.dart';
 import 'package:cinema_app/passwordchange.dart';
-import 'package:cinema_app/passwordchange.dart';
+
 
 class UserDataTab extends StatelessWidget {
   final String email;

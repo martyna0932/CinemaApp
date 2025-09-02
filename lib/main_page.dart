@@ -81,8 +81,8 @@ class _HomePageState extends State<HomePage> {
 
   final List<String> bannerImages = [
   'assets/images/banner1.png',
-  'assets/images/banner2.png',
-  'assets/images/banner3.png',
+  'assets/images/banner5.png',
+  'assets/images/banner4.png',
   ];
 
   int _currentBanner = 0;

@@ -1,4 +1,3 @@
-import 'package:cinema_app/test.dart';
 import 'package:flutter/material.dart';
 import '../main_page.dart';
 import '../loginpage.dart';
@@ -36,12 +35,7 @@ class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Test()));
-                },
-                child: const Text('Test', style: TextStyle(color: Colors.white)),
-              ),
+              
               TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
