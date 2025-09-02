@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cinema_app/data/appdata.dart';
 import 'widget/account_appbar.dart';
 import 'widget/footer.dart';
-
-// 📂 zakładki z features
 import 'features/data_tab.dart';
 import 'features/history_tab.dart';
 import 'features/coupon_tab.dart';
@@ -64,8 +61,8 @@ class _AccountPageState extends State<AccountPage> {
               child: TabBarView(
                 children: [
                   UserDataTab(email: widget.email),
-                  const HistoryTab(),   // 🔹 zakładka Historia
-                  CouponsTab(),         // 🔹 zakładka Kupony
+                  const HistoryTab(),   
+                  CouponsTab(),        
                 ],
               ),
             ),

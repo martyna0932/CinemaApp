@@ -1,5 +1,4 @@
 import 'package:cinema_app/accountpage.dart';
-import 'package:cinema_app/accountpage.dart';
 import 'package:flutter/material.dart';
 import '../main_page.dart';
 import '../loginpage.dart';

@@ -31,7 +31,7 @@ class _CouponsTabState extends State<CouponsTab> {
           final code = _couponCodes[coupon];
 
           return Card(
-            color: const Color.fromARGB(255, 48, 48, 48),
+            color: const Color.fromARGB(255, 233, 156, 40),
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
