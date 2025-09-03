@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../main_page.dart';
 import '../loginpage.dart';
 import '../registerpage.dart';
+import '../repertuar.dart';
 
 
 class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
@@ -35,7 +36,6 @@ class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              
               TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
@@ -62,14 +62,42 @@ class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              for (var label in ['REPERTUAR', 'OFERTY', 'BAR KINOWY', 'NOWOŚCI', 'PREZENTY', 'VIP'])
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    label,
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                },
+                child: const Text('REPERTUAR', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                },
+                child: const Text('OFERTY', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                },
+                child: const Text('BAR KINOWY', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                },
+                child: const Text('NOWOŚCI', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                },
+                child: const Text('PREZENTY', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                },
+                child: const Text('VIP', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
             ],
           ),
         ),
