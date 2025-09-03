@@ -21,7 +21,7 @@ class _PurchasepageState extends State<Purchasepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarPage(),
-      body: SingleChildScrollView(   // 🔹 przewijalna zawartość
+      body: SingleChildScrollView(   
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -52,17 +52,17 @@ class _PurchasepageState extends State<Purchasepage> {
   padding: const EdgeInsets.all(16),
   child: Center(
     child: SizedBox(
-      width: 300, // 🔹 szerokość całej siatki (możesz zmienić np. na 350)
+      width: 300, 
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 8,          // 🔹 8 siedzeń w rzędzie
+          crossAxisCount: 8,          
           crossAxisSpacing: 4,
           mainAxisSpacing: 4,
-          childAspectRatio: 1,        // 🔹 kwadraciki, ale mniejsze
+          childAspectRatio: 1,       
         ),
-        itemCount: 40, // np. 40 miejsc
+        itemCount: 40, 
         itemBuilder: (context, index) {
           final seat = "Miejsce ${index + 1}";
           final isSelected = _selectedSeat == seat;
@@ -113,7 +113,7 @@ class _PurchasepageState extends State<Purchasepage> {
             ),
 
             const SizedBox(height: 32),
-            const FooterPage(),   // 🔹 footer przewija się razem z treścią
+            const FooterPage(),   
           ],
         ),
       ),

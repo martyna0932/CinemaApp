@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cinema_app/data/appdata.dart';
 import 'widget/account_appbar.dart';
 import 'widget/footer.dart';
-
-// import zakładek z folderu features
 import 'features/password_tab.dart';
 import 'features/history_tab.dart';
 import 'features/coupon_tab.dart';
@@ -21,13 +19,13 @@ class _PasswordPageState extends State<PasswordPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, // trzy zakładki
+      length: 3, 
       child: Scaffold(
         appBar: const AppBarPage_account(),
         backgroundColor: Colors.black,
         body: Column(
           children: [
-            // Główny nagłówek
+            
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -52,7 +50,7 @@ class _PasswordPageState extends State<PasswordPage> {
               ),
             ),
 
-            // TabBar
+            
             const TabBar(
               indicatorColor: Colors.orange,
               labelColor: Colors.orange,
@@ -64,7 +62,7 @@ class _PasswordPageState extends State<PasswordPage> {
               ],
             ),
 
-            // Treść zakładek
+           
             Expanded(
               child: TabBarView(
                 children: [
@@ -77,7 +75,7 @@ class _PasswordPageState extends State<PasswordPage> {
           ],
         ),
 
-        // Stopka
+        
         bottomNavigationBar: const SizedBox(
           height: 60,
           child: FooterPage(),

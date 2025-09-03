@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            // Email
+                           
                             TextFormField(
                               controller: emailController,
                               style: const TextStyle(color: Colors.white),
@@ -77,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 16),
 
-                            // Hasło
+                            
                             TextFormField(
                               controller: passwordController,
                               obscureText: true,
@@ -105,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 16),
 
-                            // Potwierdzenie hasła
+                            
                             TextFormField(
                               controller: confirmPasswordController,
                               obscureText: true,
@@ -133,7 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 16),
 
-                            // Akceptacja regulaminu
+                            
                             Row(
                               children: [
                                 Checkbox(
@@ -176,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       );
                                       return;
                                     }
-                                    // TODO: Dodaj logikę rejestracji
+                                    
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text(
@@ -220,7 +220,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 48),
-            const FooterPage(), // <- Footer działa poprawnie
+            const FooterPage(), 
           ],
         ),
       ),

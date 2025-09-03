@@ -1,7 +1,8 @@
-import 'package:cinema_app/purchasepage.dart';
 import 'package:flutter/material.dart';
 import 'widget/footer.dart';
 import 'widget/appbar.dart';
+import 'widget/movie_section.dart';
+import 'widget/banner.dart';
 import 'data/appdata.dart';
 import 'dart:async';
 
@@ -80,9 +81,9 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final List<String> bannerImages = [
-  'assets/images/banner1.png',
-  'assets/images/banner5.png',
-  'assets/images/banner4.png',
+    'assets/images/banner1.png',
+    'assets/images/banner5.png',
+    'assets/images/banner4.png',
   ];
 
   int _currentBanner = 0;
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _bannerTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
+    _bannerTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
         _currentBanner = (_currentBanner + 1) % bannerImages.length;
       });
@@ -104,61 +105,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  Widget buildBanner() {
-  return SizedBox(
-    height: 400,
-    width: double.infinity,
-    child: Stack(
-      children: [
-        Positioned.fill(
-          child: Image.network(
-            bannerImages[_currentBanner],
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                const Center(child: Icon(Icons.error, color: Colors.red)),
-          ),
-        ),
-        Container(
-          color: Colors.black.withOpacity(0.4),
-        ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Witaj w Cinema City',
-                style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Purchasepage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 237, 119, 1),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24, vertical: 12),
-                ),
-                child: const Text('Rezerwuj bilety',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
-              ),
-            ],
-          ),
-        )
-      ],
-    ),
-  );
-}
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,112 +112,17 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            buildBanner(),
+            BannerWidget(bannerImages: bannerImages, currentBanner: _currentBanner),
             const SizedBox(height: 32),
-            buildSection('Nowości w kinie', nowosci),
+            MovieSection(title: 'Nowości w kinie', movies: nowosci),
             const SizedBox(height: 32),
-            buildSection('Wkrótce', wkrotce),
+            MovieSection(title: 'Wkrótce', movies: wkrotce),
             const SizedBox(height: 32),
-            buildSection('Wydarzenia specjalne', wydarzenia),
+            MovieSection(title: 'Wydarzenia specjalne', movies: wydarzenia),
             const SizedBox(height: 48),
             const FooterPage(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget buildSection(String title, List<Map<String, String>> movies) {
-    final controller = ScrollController();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 237, 119, 1))),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 300,
-            child: Stack(
-              children: [
-                ListView(
-                  controller: controller,
-                  scrollDirection: Axis.horizontal,
-                  children: movies.map((movie) {
-                    return moviePoster(movie['image']!, movie['title']!);
-                  }).toList(),
-                ),
-                Positioned(
-                  left: 0,
-                  top: 100,
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                    onPressed: () {
-                      controller.animateTo(controller.offset - 200,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease);
-                    },
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  top: 100,
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_forward_ios,
-                        color: Colors.white),
-                    onPressed: () {
-                      controller.animateTo(controller.offset + 200,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease);
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget moviePoster(String imagePath, String title) {
-    return Container(
-      width: 180,
-      margin: const EdgeInsets.only(right: 16),
-      decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 4)],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              child: Image.network(
-                imagePath,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => const Center(
-                    child: Icon(Icons.error, color: Colors.red)),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(
-              title,
-              style:
-                  const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
       ),
     );
   }
