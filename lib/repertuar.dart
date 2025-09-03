@@ -118,7 +118,7 @@ class RepertuarPage extends StatelessWidget {
                                 backgroundColor:
                                     const Color.fromARGB(255, 237, 119, 1),
                               ),
-                              child: const Text("Kup bilet"),
+                              child: const Text("Kup bilet", style: TextStyle(color: Colors.white),),
                             ),
                           ],
                         ),

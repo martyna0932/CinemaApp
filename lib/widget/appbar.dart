@@ -1,3 +1,5 @@
+import 'package:cinema_app/barpage.dart';
+import 'package:cinema_app/offerpage.dart';
 import 'package:flutter/material.dart';
 import '../main_page.dart';
 import '../loginpage.dart';
@@ -70,13 +72,13 @@ class AppBarPage extends StatelessWidget implements PreferredSizeWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const OfertaPage()));
                 },
                 child: const Text('OFERTY', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RepertuarPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BarKinowyPage()));
                 },
                 child: const Text('BAR KINOWY', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
               ),
