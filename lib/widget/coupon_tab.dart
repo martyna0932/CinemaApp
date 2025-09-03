@@ -31,7 +31,7 @@ class _CouponsTabState extends State<CouponsTab> {
           final code = _couponCodes[coupon];
 
           return Card(
-            color: const Color.fromARGB(255, 233, 156, 40),
+            color: const Color.fromARGB(255, 41, 40, 39),
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -58,9 +58,9 @@ class _CouponsTabState extends State<CouponsTab> {
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: code == null ? Colors.black87 : Colors.orange,
+                      backgroundColor: code == null ? Colors.orange : const Color.fromARGB(255, 48, 48, 47),
                     ),
-                    child: const Text("Generuj kod"),
+                    child: const Text("Generuj kod", style: TextStyle(color: Colors.white),),
                   ),
                 ],
               ),
