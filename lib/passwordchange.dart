@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cinema_app/data/appdata.dart';
 import 'widget/account_appbar.dart';
 import 'widget/footer.dart';
-import 'features/password_tab.dart';
-import 'features/history_tab.dart';
-import 'features/coupon_tab.dart';
+import 'widget/password_tab.dart';
+import 'widget/history_tab.dart';
+import 'widget/coupon_tab.dart';
 
 class PasswordPage extends StatefulWidget {
   final String email;

@@ -49,43 +49,43 @@ class _PurchasepageState extends State<Purchasepage> {
             const Text("🎟️ Wybierz miejsce", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
 
             Padding(
-  padding: const EdgeInsets.all(16),
-  child: Center(
-    child: SizedBox(
-      width: 300, 
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 8,          
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 4,
-          childAspectRatio: 1,       
-        ),
-        itemCount: 40, 
-        itemBuilder: (context, index) {
-          final seat = "Miejsce ${index + 1}";
-          final isSelected = _selectedSeat == seat;
-          return GestureDetector(
-            onTap: () => setState(() => _selectedSeat = seat),
-            child: Container(
-              decoration: BoxDecoration(
-                color: isSelected ? Colors.orange : Colors.grey[800],
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Center(
-                child: Text(
-                  "${index + 1}",
-                  style: const TextStyle(color: Colors.white, fontSize: 10),
+            padding: const EdgeInsets.all(16),
+            child: Center(
+              child: SizedBox(
+                width: 300, 
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 8,          
+                    crossAxisSpacing: 4,
+                    mainAxisSpacing: 4,
+                    childAspectRatio: 1,       
+                  ),
+                  itemCount: 40, 
+                  itemBuilder: (context, index) {
+                    final seat = "Miejsce ${index + 1}";
+                    final isSelected = _selectedSeat == seat;
+                    return GestureDetector(
+                      onTap: () => setState(() => _selectedSeat = seat),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.orange : Colors.grey[800],
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${index + 1}",
+                            style: const TextStyle(color: Colors.white, fontSize: 10),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
-          );
-        },
-      ),
-    ),
-  ),
-),
+          ),
 
 
             if (_selectedSeat != null)

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'widget/account_appbar.dart';
 import 'widget/footer.dart';
-import 'features/data_tab.dart';
-import 'features/history_tab.dart';
-import 'features/coupon_tab.dart';
+import 'widget/data_tab.dart';
+import 'widget/history_tab.dart';
+import 'widget/coupon_tab.dart';
 
 class AccountPage extends StatefulWidget {
   final String email;
